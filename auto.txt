@@ -1,0 +1,4 @@
+brand:Skoda
+model:Octavia RS
+fuel_consumption:7.5
+price:2.2
