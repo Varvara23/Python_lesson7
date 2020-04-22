@@ -1,9 +1,9 @@
 import datetime
-
-from docx.shared import Cm
 from docxtpl import DocxTemplate
 import csv
 import json
+import time
+
 
 def read_data(file_name):
     dict_k = {}
@@ -25,7 +25,10 @@ def from_template(file_data, template):
     template.save('report_' + str(datetime.datetime.now().date()) + '.docx')
 
 
+start_time = time.time()
 from_template('auto.txt','report.docx')
+end_time = time.time()
+print("Время, затраченное на генерацию отчета docx: {} секунд".format(end_time-start_time))
 
 
 # 4) Создать csv файл с данными о машине
@@ -39,7 +42,11 @@ def generate_csv(file_data, file_csv):
         writer.writerow(dict_data)
 
 
+start_time = time.time()
 generate_csv('auto.txt','auto.csv')
+end_time = time.time()
+print("Время, затраченное на генерацию отчета csv: {} секунд".format(end_time-start_time))
+
 
 # 5) Создать json файл с данными о машине
 def generate_json(file_data, file_json):
@@ -48,4 +55,7 @@ def generate_json(file_data, file_json):
         json.dump(dict_data, f)
 
 
+start_time = time.time()
 generate_json('auto.txt','auto.json')
+end_time = time.time()
+print("Время, затраченное на генерацию отчета json: {} секунд".format(end_time-start_time))
